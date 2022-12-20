@@ -76,7 +76,7 @@ interface Dadb : AutoCloseable {
 
     @Throws(IOException::class)
     fun install(file: File, vararg options: String) {
-        if (supportsFeature("abb_exec")) {
+        if (false) {
             abbExec("package", "install", "-S", file.length().toString(), *options).use { stream ->
                 stream.sink.writeAll(file.source())
                 stream.sink.flush()
