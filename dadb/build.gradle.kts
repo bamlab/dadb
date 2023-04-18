@@ -14,7 +14,7 @@ plugins {
 }
 
 repositories {
-    mavenCentral()
+//    mavenCentral()
 }
 
 dependencies {
@@ -45,19 +45,19 @@ graalvmNative {
     binaries {
         all {
             buildArgs.add("-H:+EnableAllSecurityServices")
-            javaLauncher.set(provider {
-                val output = tasks.extractGraalTooling.get().outputs.files.singleFile
-                val javaHome = if (OperatingSystem.current().isMacOsX) output.resolve("Contents/Home") else output
-                val metadata = metadataDetector.getMetadata(javaHome)
-                if (!metadata.isValidInstallation) {
-                    throw RuntimeException(metadata.errorMessage)
-                }
-                val spec = objects.newInstance(DefaultToolchainSpec::class.java).apply {
-                    languageVersion.set(JavaLanguageVersion.of(java.targetCompatibility.majorVersion))
-                }
-                val javaToolchain = toolchainFactory.newInstance(javaHome, JavaToolchainInput(spec))
-                javaToolchain.get().javaLauncher
-            })
+//            javaLauncher.set(provider {
+//                val output = tasks.extractGraalTooling.get().outputs.files.singleFile
+//                val javaHome = if (OperatingSystem.current().isMacOsX) output.resolve("Contents/Home") else output
+//                val metadata = metadataDetector.getMetadata(javaHome)
+//                if (!metadata.isValidInstallation) {
+//                    throw RuntimeException(metadata.errorMessage)
+//                }
+//                val spec = objects.newInstance(DefaultToolchainSpec::class.java).apply {
+//                    languageVersion.set(JavaLanguageVersion.of(java.targetCompatibility.majorVersion))
+//                }
+//                val javaToolchain = toolchainFactory.newInstance(javaHome, JavaToolchainInput(spec))
+//                javaToolchain.get().javaLauncher
+//            })
         }
     }
 }
